@@ -40,7 +40,7 @@
         <div class="welcome-para-group" id="welc1-pg">
           <p> The Jeopardy Game Master database is initially empty.
               While there are options below that allow you to create a Jeopardy game completely
-              from scratch (see Step 2), the easiest way to start playing is to load the default
+              from scratch (see Step 1 (Alternate)), the easiest way to start playing is to load the default
               Jeopardy and Double Jeopardy games into the database. You can do this by
               selecting the <b>Transfer Defaults</b> button.
           </p>
@@ -97,9 +97,9 @@
           <p> The Jeopardy application is designed with a "virtual database manager" that
               sits in between the game authoring/playing screens and the database.
               The route tests bypass the user interface portions of the application and directly
-              excercises the six routes that server.js supports.  These route tests can be seen
+              excercise the six routes that server.js supports.  These route tests can be seen
               in the file vdbman.js in function runRouteTests. To run the route unit tests select
-              the <b>Run Unit Tests</b> button.
+              the <b>Run Route Tests</b> button.
           </p>
           <button id="gm-run-route-tests"> Run Route Tests </button>
         </div>
@@ -111,33 +111,33 @@
       <fieldset>
       <form>
       <h2>Choose a Title:</h2>
-      <input type="text" id="category-name" placeholder="Alter Egos" />
+      <input type="text" id="category-name" placeholder="Category Name" />
       <h2>For each question, choose a value, the answer, and the question:</h2>
       <div id="question-grid">
         <div class=jeop-triplet id="q1-column">
           <input type="text" class=jeop-value id="q1-v" placeholder="100" />
-          <input type="text" class=jeop-question id="q1-q" placeholder="Bruce Wayne's alter ego" />
-          <input type="text" class=jeop-answer id="q1-a" placeholder="Who is Batman?" />
+          <input type="text" class=jeop-question id="q1-q" placeholder="Answer" />
+          <input type="text" class=jeop-answer id="q1-a" placeholder="Question?" />
         </div>
         <div class=jeop-triplet id="q2-column">
           <input type="text" class=jeop-value id="q2-v" placeholder="200" />
-          <input type="text" class=jeop-question id="q2-q" placeholder="Peter Parker's alter ego" />
-          <input type="text" class=jeop-answer id="q2-a" placeholder="Who is Spiderman?" />
+          <input type="text" class=jeop-question id="q2-q" placeholder="Answer" />
+          <input type="text" class=jeop-answer id="q2-a" placeholder="Question?" />
         </div>
         <div class=jeop-triplet id="q3-column">
           <input type="text" class=jeop-value id="q3-v" placeholder="300" />
-          <input type="text" class=jeop-question id="q3-q" placeholder="Bruce Banner's alter ego" />
-          <input type="text" class=jeop-answer id="q3-a" placeholder="Who is the Hulk?" />
+          <input type="text" class=jeop-question id="q3-q" placeholder="Answer" />
+          <input type="text" class=jeop-answer id="q3-a" placeholder="Question?" />
         </div>
         <div class=jeop-triplet id="q4-column">
           <input type="text" class=jeop-value id="q4-v" placeholder="400" />
-          <input type="text" class=jeop-question id="q4-q" placeholder="Clark Kent's alter ego" />
-          <input type="text" class=jeop-answer id="q4-a" placeholder="Who is Superman?" />
+          <input type="text" class=jeop-question id="q4-q" placeholder="Answer" />
+          <input type="text" class=jeop-answer id="q4-a" placeholder="Question?" />
         </div>
         <div class=jeop-triplet id="q5-column">
           <input type="text" class=jeop-value id="q5-v" placeholder="500" />
-          <input type="text" class=jeop-question id="q5-q" placeholder="Dick Grayson's alter ego" />
-          <input type="text" class=jeop-answer id="q5-a" placeholder="Who is Robin?" />
+          <input type="text" class=jeop-question id="q5-q" placeholder="Answer" />
+          <input type="text" class=jeop-answer id="q5-a" placeholder="Question?" />
         </div>
       </div>
       <button class ="ok-button"> Create </button>
@@ -151,7 +151,7 @@
       <fieldset>
       <form>
       <h2>Choose a Game Title:</h2>
-      <input type="text" id="game-title" placeholder="Insert Name Here" />
+      <input type="text" id="game-title" placeholder="Blank Title" />
       <div id="game-category-grid">
         <select class ="cat-menu" id=cgs-cat1></select>
         <select class ="cat-menu" id=cgs-cat2></select>
@@ -241,10 +241,10 @@
       </div>
     </div>
 
-      <button class ="ok-button"> Create </button>
+      <button class ="ok-button"> OK </button>
       <button class ="cancel-button"> Cancel </button>
-      <input type="text" id = "player-answer" placeholder="Who is Batman?" />
-      <button class ="submit-button"> Submit </button>
+      <input type="text" id = "player-answer" placeholder="Who? What? Where?" />
+      <button class ="submit-button"> Submit Answer</button>
 
     </div>
 

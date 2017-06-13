@@ -22,8 +22,6 @@ class PlayGameScreen {
     this.displayPlayerScore = document.querySelector('#play-game-screen #p1-score');
 
     this.titles = document.querySelectorAll('#play-game-screen .jeop-title-box');
-    this.values = document.querySelectorAll('#play-game-screen .jeop-box');
-
 
     // Install Event listeners
     this.buttOK.addEventListener('click',this.buttonClick);
@@ -76,6 +74,9 @@ class PlayGameScreen {
   init(game) {
     this.game = game;
 
+    this.playerScore = 0;
+    this.displayPlayerScore.textContent = this.playerScore;
+
     let cats = game['categories'];
     for (let i=0; i<cats.length; i++) {
       let cat = cats[i];
@@ -90,7 +91,12 @@ class PlayGameScreen {
       let questions = cat['questions'];
       for (let j=0; j<questions.length; j++) {
         let triplet = questions[j];
-        this.values[index].textContent = triplet['value'];
+        let box = this.jeopBoxes[index];
+        // make sure boxes answered from previous game are made active
+        box.classList.remove('inactive');
+        box.addEventListener('click',this.boxClick);
+        box.style.color = '#FFD700';
+        box.textContent = triplet['value'];
         index++;
       }
     }

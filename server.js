@@ -199,20 +199,16 @@ app.get('/getallgames', onGetAllGames);
 
 // Needed to deploy on Heroku.
 const port = process.env.PORT || 3000;
-/*
-app.listen(port, function () {
-  console.log(`Server listening on port ${port}!`);
-});
-*/
+
 
 async function startServer() {
   // Set the db and collection variables before starting the server.
   db = await MongoClient.connect(MONGO_URL);
-  gameCollection = db.collection('games_v21');
-  catCollection = db.collection('cats_v21');
+  gameCollection = db.collection('games_v25');
+  catCollection = db.collection('cats_v25');
 
   // Now every route can safely use the db and collection objects.
-  await app.listen(3000);
-  console.log('Listening on port 3000');
+  await app.listen(port);
+  console.log('Listening on port ' + port);
 }
 startServer();

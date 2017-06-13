@@ -8,7 +8,7 @@ Animation for the chosen question
   margin: 0;
   background-color: white;
   animation-name: stretch;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-timing-function: ease-in;
   animation-delay: 0;
 }

@@ -1,7 +1,7 @@
 {
-  "name": "hw5-sheets",
+  "name": "hw6-jeopardy",
   "version": "1.0.0",
-  "description": "CS193X HW5",
+  "description": "CS193X HW6",
   "main": "server.js",
   "engines": {
     "node": "7x"

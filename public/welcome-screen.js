@@ -66,6 +66,7 @@ class WelcomeScreen {
     if (event.currentTarget === this.buttCreateCategory) {
       this.speak("Time to create a category!");
       this.hide();
+      this.createCategoryScreen.init();
       this.createCategoryScreen.show();
     } else if (event.currentTarget === this.buttCreateGame) {
       this.speak("Time to create a game!");
@@ -89,9 +90,9 @@ class WelcomeScreen {
       }
       this.playGameScreen.show();
     } else if (event.currentTarget === this.buttRouteTests) {
-      this.dbman.runRouteTests();
+      let routeResult = await this.dbman.runRouteTests();
     } else if (event.currentTarget === this.buttXferDefaults) {
-      this.dbman.xferDefaults();
+      let xferResult = await this.dbman.xferDefaults();
     } else {
       this.speak("Should not get here!");
     }
@@ -103,7 +104,7 @@ class WelcomeScreen {
     this.speak("ON PLAY GAME");
     this.playGameScreen.hide();
     if (proceed) {
-      this.speak("winner" + winner);
+      this.speak("winner " + winner);
     }
     this.show();
   }

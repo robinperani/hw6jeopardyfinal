@@ -60,6 +60,13 @@ class CreateCategoryScreen {
     return(category);
   }
 
+  init() {
+    // prepopulate the values
+    for (let i=0; i < 5; i++) {
+      this.tboxValues[i].value = (i+1)*100;
+    }
+  }
+
   show() {
     this.containerElement.classList.remove('inactive');
   }

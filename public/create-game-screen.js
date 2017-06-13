@@ -24,7 +24,7 @@ class CreateGameScreen {
     this.buttCancel.addEventListener('click',this.buttonClick);
   }
 
-//
+//Note - remember that event.preventDefault() is required for all buttonClick functions!!!
   buttonClick(event) {
     event.preventDefault();
     if (event.currentTarget === this.buttCreate) {
@@ -67,6 +67,9 @@ class CreateGameScreen {
   }
 
   init(cats) {
+    // set the default for the Game title
+    this.tboxTitle.value = "Game Title";
+    // Setup the category pulldown menus
     this.cats = cats;
     for (let m=0; m < this.menuRefs.length; m++) {
       let menu = this.menuRefs[m];

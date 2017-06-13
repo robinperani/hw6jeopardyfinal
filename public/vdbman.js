@@ -11,20 +11,20 @@ class VDBMan {
 constructor() {
     this.categories = new Array();
     this.games = new Array();
-    // useMongo is used for toggling between using hardcoded constants or Mongo
-    // for the database
-    this.useMongo = false;
+    // useMongo is used for toggling between:
+    // a) in memory database populated with constants or
+    // b) Mongo database
+    this.useMongo = true;
   }
 
   async init() {
     if (this.useMongo) {
       // any mongo initialization goes here.
-      console.log("ERROR = VDBMan init mongo switch broken");
-      // let result = await this.dbPushConstantJSON();
+      //
       // need this on Mongo side for unit testing routes
       this.pushConstantJSON();
     } else {
-      // will be working with hardcoded constants for database
+      // will be working with in memory database populated with constants.
       this.pushConstantJSON();
     }
     return(true);
@@ -42,8 +42,7 @@ constructor() {
 
   async addCategory(clientCat){
     if (this.useMongo) {
-      let serverCat = this.toServerCat(clientCat);
-      let result = await this.dbPostCat(serverCat);
+      let result = await this.dbPostCat(clientCat);
     } else {
       this.categories.push(clientCat);
     }
@@ -52,8 +51,7 @@ constructor() {
 
   async addGame(clientGame){
     if (this.useMongo) {
-      let serverGame = this.toServerGame(clientGame);
-      let result = await this.dbPostGame(serverGame);
+      let result = await this.dbPostGame(clientGame);
     } else {
       this.games.push(clientGame);
     }
@@ -64,8 +62,14 @@ constructor() {
       let clientCat = await this.dbGetCat(name);
       return(clientCat);
     } else {
-      this.speak("911 getNamedCategory hardcoded 0th element return");
-      return (this.categories[0]);
+      for(let i=0; i < this.categories.length; i++) {
+        let cat = this.categories[i];
+        let indexName = cat.name;
+        if (indexName === name) {
+          return(cat);
+        }
+      }
+      return (undefined);
     }
   }
 
@@ -74,8 +78,14 @@ constructor() {
       let clientGame = await this.dbGetGame(title);
       return (clientGame);
     } else {
-      this.speak("911 getNamedGame hardcoded 0th element return");
-      return (this.games[0]);
+      for(let i=0; i < this.games.length; i++) {
+        let game = this.games[i];
+        let indexTitle = game.title;
+        if (indexTitle === title) {
+          return(game);
+        }
+      }
+      return (undefined);
     }
   }
 
