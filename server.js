@@ -6,8 +6,29 @@ const app = express();
 const jsonParser = bodyParser.json();
 app.use(express.static('public'));
 
+/* WAS
 const DATABASE_NAME = 'jeopardy-game';
 const MONGO_URL = `mongodb://localhost:27017/${DATABASE_NAME}`;
+*/
+/* MOVE TO THIS
+async function main() {
+  const DATABASE_NAME = 'cs193x-db';
+  const MONGO_URL = `mongodb://localhost:27017/${DATABASE_NAME}`;
+
+  // The "process.env.MONGODB_URI" is needed to work with Heroku.
+  db = await MongoClient.connect(process.env.MONGODB_URI || MONGO_URL);
+
+  // The "process.env.PORT" is needed to work with Heroku.
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
+  console.log(`Server listening on port ${port}!`);
+};
+*/
+
+/* NOW */
+const DATABASE_NAME = 'jeopardy-game';
+const MONGO_URL = `mongodb://localhost:27017/${DATABASE_NAME}`;
+
 
 let db = null;
 let gameCollection = null;
@@ -197,10 +218,7 @@ async function onGetAllGames(req, res) {
 }
 app.get('/getallgames', onGetAllGames);
 
-// Needed to deploy on Heroku.
-const port = process.env.PORT || 3000;
-
-
+/* WAS
 async function startServer() {
   // Set the db and collection variables before starting the server.
   db = await MongoClient.connect(MONGO_URL);
@@ -210,5 +228,21 @@ async function startServer() {
   // Now every route can safely use the db and collection objects.
   await app.listen(port);
   console.log('Listening on port ' + port);
+}
+startServer();
+*/
+
+/* NOW */
+async function startServer() {
+  // The "process.env.MONGODB_URI" is needed to work with Heroku.
+  db = await MongoClient.connect(process.env.MONGODB_URI || MONGO_URL);
+
+  gameCollection = db.collection('games_v26');
+  catCollection = db.collection('cats_v26');
+
+  // The "process.env.PORT" is needed to work with Heroku.
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
+  console.log(`Server listening on port ${port}!`);
 }
 startServer();
